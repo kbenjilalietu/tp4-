@@ -2,7 +2,7 @@ pipeline
 {
     environment 
     {
-        registry = "khadija2000/tp4-job3tp4"
+        registry = "khadija2000/tp4_job3tp4"
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
@@ -47,6 +47,13 @@ pipeline
                         dockerImage.push()
                     }
                 }
+            }
+        }
+        stage('Deploy image') 
+        {
+            steps
+            {
+                bat "docker run -d $registry:$BUILD_NUMBER"
             }
         }
     }
